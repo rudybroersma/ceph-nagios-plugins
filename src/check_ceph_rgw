@@ -41,6 +41,7 @@ def main():
   parser.add_argument('-d','--detail', help='output perf data for all buckets', action='store_true')
   parser.add_argument('-B','--byte', help='output perf data in Byte instead of KB', action='store_true')
   parser.add_argument('-e','--exe', help='radosgw-admin executable [%s]' % RGW_COMMAND)
+  parser.add_argument('-n','--name', help='rados client name')
   parser.add_argument('-c','--conf', help='alternative ceph conf file')
   parser.add_argument('-i','--id', help='ceph client id')
   parser.add_argument('-V','--version', help='show version and exit', action='store_true')
@@ -68,6 +69,9 @@ def main():
   if args.id:
     rgw_cmd.append('-i')
     rgw_cmd.append(args.id)
+  if args.name:
+    rgw_cmd.append('--name')
+    rgw_cmd.append(args.name)
   rgw_cmd.append('bucket')
   rgw_cmd.append('stats')
 
